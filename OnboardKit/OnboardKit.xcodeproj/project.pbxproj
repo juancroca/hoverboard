@@ -37,6 +37,7 @@
 		D754AC3A1E985514006AE20A /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754AC391E985514006AE20A /* Bundle.swift */; };
 		D754AC3C1E98570B006AE20A /* OnboardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754AC3B1E98570B006AE20A /* OnboardFooterView.swift */; };
 		D754AC3E1E985AAB006AE20A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D754AC3D1E985AAB006AE20A /* Button.swift */; };
+		B20000001E970001004920C2 /* OnboardKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000001E970001004920C1 /* OnboardKitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		D754AC391E985514006AE20A /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		D754AC3B1E98570B006AE20A /* OnboardFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardFooterView.swift; sourceTree = "<group>"; };
 		D754AC3D1E985AAB006AE20A /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		B20000001E970001004920C1 /* OnboardKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardKitTests.swift; sourceTree = "<group>"; };
+		B20000001E970001004920C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +110,18 @@
 			isa = PBXGroup;
 			children = (
 				D7275D341E97C98300290B28 /* OnboardKit */,
+				B20000001E970001004920C4 /* OnboardKitTests */,
 				D7275D331E97C98300290B28 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		B20000001E970001004920C4 /* OnboardKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				B20000001E970001004920C3 /* Info.plist */,
+				B20000001E970001004920C1 /* OnboardKitTests.swift */,
+			);
+			path = OnboardKitTests;
 			sourceTree = "<group>";
 		};
 		D7275D331E97C98300290B28 /* Products */ = {
@@ -353,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B20000001E970001004920C2 /* OnboardKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +536,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elslooo.OnboardKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -536,7 +550,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elslooo.OnboardKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

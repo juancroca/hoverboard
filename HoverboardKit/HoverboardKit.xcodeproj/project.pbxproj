@@ -26,6 +26,9 @@
 		D7ABD7C81E994F5000492A8D /* Window+Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ABD7C71E994F5000492A8D /* Window+Grid.swift */; };
 		D7ABD7D21E99577E00492A8D /* AuthorizationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ABD7D11E99577E00492A8D /* AuthorizationManagerDelegate.swift */; };
 		D7EBE42A1EA8FCFD00B5ECBF /* Window+Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EBE4291EA8FCFD00B5ECBF /* Window+Screen.swift */; };
+		A10000001E960001004920A5 /* GridNormalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000001E960001004920A4 /* GridNormalizationTests.swift */; };
+		A10000001E960001004920AD /* WindowGridLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000001E960001004920AC /* WindowGridLayoutTests.swift */; };
+		A10000001E960001004920AB /* HoverboardKitMiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000001E960001004920AA /* HoverboardKitMiscTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,10 @@
 		D7ABD7C71E994F5000492A8D /* Window+Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Grid.swift"; sourceTree = "<group>"; };
 		D7ABD7D11E99577E00492A8D /* AuthorizationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManagerDelegate.swift; sourceTree = "<group>"; };
 		D7EBE4291EA8FCFD00B5ECBF /* Window+Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window+Screen.swift"; sourceTree = "<group>"; };
+		A10000001E960001004920A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10000001E960001004920A4 /* GridNormalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridNormalizationTests.swift; sourceTree = "<group>"; };
+		A10000001E960001004920AC /* WindowGridLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowGridLayoutTests.swift; sourceTree = "<group>"; };
+		A10000001E960001004920AA /* HoverboardKitMiscTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverboardKitMiscTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +92,20 @@
 			isa = PBXGroup;
 			children = (
 				D71B0BE51E96B22F0064A6C2 /* HoverboardKit */,
+				A10000001E960001004920AE /* HoverboardKitTests */,
 				D71B0BE41E96B22F0064A6C2 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		A10000001E960001004920AE /* HoverboardKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				A10000001E960001004920A3 /* Info.plist */,
+				A10000001E960001004920A4 /* GridNormalizationTests.swift */,
+				A10000001E960001004920AC /* WindowGridLayoutTests.swift */,
+				A10000001E960001004920AA /* HoverboardKitMiscTests.swift */,
+			);
+			path = HoverboardKitTests;
 			sourceTree = "<group>";
 		};
 		D71B0BE41E96B22F0064A6C2 /* Products */ = {
@@ -277,6 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10000001E960001004920A5 /* GridNormalizationTests.swift in Sources */,
+				A10000001E960001004920AD /* WindowGridLayoutTests.swift in Sources */,
+				A10000001E960001004920AB /* HoverboardKitMiscTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elslooo.HoverboardKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -460,7 +482,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.elslooo.HoverboardKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

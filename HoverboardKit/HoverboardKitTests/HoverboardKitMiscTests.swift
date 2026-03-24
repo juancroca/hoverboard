@@ -3,6 +3,7 @@
  */
 
 import XCTest
+import AppKit
 @testable import HoverboardKit
 
 final class HoverboardKitMiscTests: XCTestCase {
@@ -33,5 +34,23 @@ final class HoverboardKitMiscTests: XCTestCase {
 
     func testAuthorizationManagerIsAuthorizedQueryDoesNotCrash() {
         _ = AuthorizationManager().isAuthorized
+    }
+
+    /// `WindowManager.start()` must fail when the process is not trusted for accessibility.
+    func testWindowManagerStartThrowsWhenUnauthorized() throws {
+        if AuthorizationManager().isAuthorized {
+            throw XCTSkip("Skipping: process already trusted for accessibility")
+        }
+        guard let wm = try? WindowManager() else {
+            throw XCTSkip("WindowManager init failed (event tap unavailable)")
+        }
+        XCTAssertThrowsError(try wm.start())
+    }
+
+    /// Smoke: `Recognizer` can be constructed when the system allows a global event tap.
+    func testRecognizerInitWhenPermitted() throws {
+        guard let _ = try? Recognizer(closure: {}) else {
+            throw XCTSkip("Recognizer init failed (event tap unavailable)")
+        }
     }
 }

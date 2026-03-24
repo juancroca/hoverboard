@@ -105,4 +105,55 @@ final class WindowGridLayoutTests: XCTestCase {
         XCTAssertEqual(origin.x, 35)
         XCTAssertEqual(origin.y, 50)
     }
+
+    /// Every unit cell in a 3×3 grid maps to one ninth of the visible rect.
+    func testAllUnitCellsThreeByThree() {
+        let vf = NSRect(x: -100, y: 50, width: 300, height: 300)
+        let cellW: CGFloat = 100
+        let cellH: CGFloat = 100
+        for gx in 0..<3 {
+            for gy in 0..<3 {
+                var g = Grid()
+                g.width = 3
+                g.height = 3
+                g.x = CGFloat(gx)
+                g.y = CGFloat(gy)
+                g.normalize()
+                let b = WindowGridLayoutMirror.cellBounds(for: g, visibleFrame: vf)
+                XCTAssertEqual(b.origin.x, vf.minX + CGFloat(gx) * cellW, accuracy: 0.01)
+                XCTAssertEqual(b.origin.y, vf.minY + CGFloat(gy) * cellH, accuracy: 0.01)
+                XCTAssertEqual(b.width, cellW, accuracy: 0.01)
+                XCTAssertEqual(b.height, cellH, accuracy: 0.01)
+            }
+        }
+    }
+
+    /// Full-width × full-height cell (single tile).
+    func testFullSpanThreeByThree() {
+        let vf = NSRect(x: 0, y: 0, width: 333, height: 222)
+        var g = Grid()
+        g.width = 3
+        g.height = 3
+        g.xnum = 3
+        g.ynum = 3
+        g.normalize()
+        let b = WindowGridLayoutMirror.cellBounds(for: g, visibleFrame: vf)
+        XCTAssertEqual(b, vf)
+    }
+
+    /// Resizable target rect matches cell bounds (mirror of `Window.grid` when resizable).
+    func testResizableFrameEqualsCellBounds() {
+        let vf = NSRect(x: 10, y: 20, width: 300, height: 200)
+        var g = Grid()
+        g.width = 2
+        g.height = 2
+        g.x = 1
+        g.y = 1
+        g.normalize()
+        let b = WindowGridLayoutMirror.cellBounds(for: g, visibleFrame: vf)
+        XCTAssertEqual(b.origin.x, 160)
+        XCTAssertEqual(b.origin.y, 120)
+        XCTAssertEqual(b.width, 150)
+        XCTAssertEqual(b.height, 100)
+    }
 }

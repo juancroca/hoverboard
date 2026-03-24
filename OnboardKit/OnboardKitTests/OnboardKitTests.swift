@@ -62,3 +62,99 @@ final class OnboardItemAPITests: XCTestCase {
         XCTAssertEqual(item.description, "d")
     }
 }
+
+// MARK: - OnboardController (internal data source)
+
+final class OnboardControllerLayoutTests: XCTestCase {
+
+    func testNumberOfCellsMatchesItemCount() {
+        let items = (0..<5).map { OnboardItem(title: "\($0)", description: "d") }
+        let c = OnboardController(title: "T", items: items)
+        _ = c.view
+        guard let cv = c.view as? CollectionView else {
+            XCTFail("Expected CollectionView root")
+            return
+        }
+        XCTAssertEqual(c.numberOfCells(in: cv), 5)
+    }
+
+    func testHorizontalDirectionUsesThirdWidthCells() {
+        let items = [
+            OnboardItem(title: "a", description: "a"),
+            OnboardItem(title: "b", description: "b")
+        ]
+        let c = OnboardController(title: "T", items: items)
+        c.direction = .horizontal
+        _ = c.view
+        guard let cv = c.view as? CollectionView else {
+            XCTFail("Expected CollectionView root")
+            return
+        }
+        cv.frame = NSRect(x: 0, y: 0, width: 600, height: 200)
+        let sz = c.collectionView(cv, sizeForItemAt: IndexPath(item: 1, section: 0))
+        XCTAssertEqual(sz.width, 200, accuracy: 0.01)
+        XCTAssertEqual(sz.height, 200, accuracy: 0.01)
+    }
+
+    func testVerticalDirectionSelectedVsCollapsedHeights() {
+        let items = [
+            OnboardItem(title: "a", description: "a"),
+            OnboardItem(title: "b", description: "b")
+        ]
+        let c = OnboardController(title: "T", items: items)
+        c.direction = .vertical
+        c.indexOfSelectedItem = 0
+        _ = c.view
+        guard let cv = c.view as? CollectionView else {
+            XCTFail("Expected CollectionView root")
+            return
+        }
+        cv.frame = NSRect(x: 0, y: 0, width: 400, height: 500)
+        let selected = c.collectionView(cv, sizeForItemAt: IndexPath(item: 0, section: 0))
+        let other = c.collectionView(cv, sizeForItemAt: IndexPath(item: 1, section: 0))
+        XCTAssertEqual(selected.height, 120)
+        XCTAssertEqual(other.height, 52)
+        XCTAssertEqual(selected.width, 400)
+        XCTAssertEqual(other.width, 400)
+    }
+
+    func testSelectItemUpdatesIndex() {
+        let items = [
+            OnboardItem(title: "a", description: "a"),
+            OnboardItem(title: "b", description: "b")
+        ]
+        let c = OnboardController(title: "T", items: items)
+        c.selectItem(atIndex: 1, animated: false)
+        XCTAssertEqual(c.indexOfSelectedItem, 1)
+    }
+}
+
+// MARK: - OnboardWindow centering (mirrors `OnboardWindowController.showWindow`)
+
+final class OnboardWindowCenteringFormulaTests: XCTestCase {
+
+    private func centerOrigin(visibleFrame: NSRect, windowFrame: NSRect) -> NSPoint {
+        NSPoint(
+            x: visibleFrame.midX - windowFrame.midX,
+            y: visibleFrame.midY - windowFrame.midY
+        )
+    }
+
+    func testCenteringAgainstVisibleFrame() {
+        let vis = NSRect(x: 0, y: 0, width: 2000, height: 1500)
+        let win = NSRect(x: 0, y: 0, width: 600, height: 400)
+        let o = centerOrigin(visibleFrame: vis, windowFrame: win)
+        XCTAssertEqual(o.x, 700)
+        XCTAssertEqual(o.y, 550)
+    }
+}
+
+// MARK: - CAMediaTimingFunction.spring
+
+final class CAMediaTimingSpringTests: XCTestCase {
+
+    func testSpringReturnsTimingFunction() {
+        let f = CAMediaTimingFunction.spring()
+        XCTAssertTrue(type(of: f) == CAMediaTimingFunction.self)
+    }
+}

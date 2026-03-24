@@ -79,4 +79,38 @@ final class GridNormalizationTests: XCTestCase {
         XCTAssertEqual(g.x, 2)
         XCTAssertEqual(g.y, 2)
     }
+
+    /// Systematic sweep: every combination in a small range must normalize to invariants.
+    func testNormalizeInvariantsForWideRangeOfInputs() {
+        for w in 1...4 {
+            for h in 1...4 {
+                for x in 0...4 {
+                    for y in 0...4 {
+                        for xn in 1...4 {
+                            for yn in 1...4 {
+                                var g = Grid()
+                                g.width = CGFloat(w)
+                                g.height = CGFloat(h)
+                                g.x = CGFloat(x)
+                                g.y = CGFloat(y)
+                                g.xnum = CGFloat(xn)
+                                g.ynum = CGFloat(yn)
+                                g.normalize()
+                                XCTAssertLessThanOrEqual(g.width, 3)
+                                XCTAssertLessThanOrEqual(g.height, 3)
+                                XCTAssertGreaterThanOrEqual(g.x, 0)
+                                XCTAssertGreaterThanOrEqual(g.y, 0)
+                                XCTAssertLessThanOrEqual(g.x, g.width - 1)
+                                XCTAssertLessThanOrEqual(g.y, g.height - 1)
+                                XCTAssertLessThanOrEqual(g.xnum, g.width)
+                                XCTAssertLessThanOrEqual(g.ynum, g.height)
+                                XCTAssertLessThanOrEqual(g.x + g.xnum, g.width)
+                                XCTAssertLessThanOrEqual(g.y + g.ynum, g.height)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

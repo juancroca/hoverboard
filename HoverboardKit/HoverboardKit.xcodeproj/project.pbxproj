@@ -29,6 +29,11 @@
 		A10000001E960001004920A5 /* GridNormalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000001E960001004920A4 /* GridNormalizationTests.swift */; };
 		A10000001E960001004920AD /* WindowGridLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000001E960001004920AC /* WindowGridLayoutTests.swift */; };
 		A10000001E960001004920AB /* HoverboardKitMiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000001E960001004920AA /* HoverboardKitMiscTests.swift */; };
+		A20000011E96000100492001 /* GridTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001E96000100492001 /* GridTestHelpers.swift */; };
+		A20000012E96000100492001 /* SessionGridMutationMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001E96000100492002 /* SessionGridMutationMirror.swift */; };
+		A20000013E96000100492001 /* RecognizerStateMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001E96000100492003 /* RecognizerStateMirror.swift */; };
+		A20000014E96000100492001 /* SessionProcessIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001E96000100492004 /* SessionProcessIntegrationTests.swift */; };
+		A20000015E96000100492001 /* RecognizerStateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001E96000100492005 /* RecognizerStateMachineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,11 @@
 		A10000001E960001004920A4 /* GridNormalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridNormalizationTests.swift; sourceTree = "<group>"; };
 		A10000001E960001004920AC /* WindowGridLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowGridLayoutTests.swift; sourceTree = "<group>"; };
 		A10000001E960001004920AA /* HoverboardKitMiscTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverboardKitMiscTests.swift; sourceTree = "<group>"; };
+		A20000001E96000100492001 /* GridTestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTestHelpers.swift; sourceTree = "<group>"; };
+		A20000001E96000100492002 /* SessionGridMutationMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionGridMutationMirror.swift; sourceTree = "<group>"; };
+		A20000001E96000100492003 /* RecognizerStateMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerStateMirror.swift; sourceTree = "<group>"; };
+		A20000001E96000100492004 /* SessionProcessIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionProcessIntegrationTests.swift; sourceTree = "<group>"; };
+		A20000001E96000100492005 /* RecognizerStateMachineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerStateMachineTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +111,13 @@
 			isa = PBXGroup;
 			children = (
 				A10000001E960001004920A3 /* Info.plist */,
+				A20000001E96000100492001 /* GridTestHelpers.swift */,
+				A20000001E96000100492002 /* SessionGridMutationMirror.swift */,
+				A20000001E96000100492003 /* RecognizerStateMirror.swift */,
 				A10000001E960001004920A4 /* GridNormalizationTests.swift */,
 				A10000001E960001004920AC /* WindowGridLayoutTests.swift */,
+				A20000001E96000100492004 /* SessionProcessIntegrationTests.swift */,
+				A20000001E96000100492005 /* RecognizerStateMachineTests.swift */,
 				A10000001E960001004920AA /* HoverboardKitMiscTests.swift */,
 			);
 			path = HoverboardKitTests;
@@ -296,8 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A20000011E96000100492001 /* GridTestHelpers.swift in Sources */,
+				A20000012E96000100492001 /* SessionGridMutationMirror.swift in Sources */,
+				A20000013E96000100492001 /* RecognizerStateMirror.swift in Sources */,
 				A10000001E960001004920A5 /* GridNormalizationTests.swift in Sources */,
 				A10000001E960001004920AD /* WindowGridLayoutTests.swift in Sources */,
+				A20000014E96000100492001 /* SessionProcessIntegrationTests.swift in Sources */,
+				A20000015E96000100492001 /* RecognizerStateMachineTests.swift in Sources */,
 				A10000001E960001004920AB /* HoverboardKitMiscTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

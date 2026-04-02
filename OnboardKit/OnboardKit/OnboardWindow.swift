@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import AppKit
 import Foundation
 
 /**
@@ -46,13 +47,13 @@ internal class OnboardWindow : NSWindow {
      * This function initializes the window with the given frame.
      */
     init(frame: CGRect) {
-        let styleMask: NSWindowStyleMask = [ .titled, .fullSizeContentView ]
+        let styleMask: NSWindow.StyleMask = [ .titled, .fullSizeContentView ]
 
         super.init(contentRect: frame, styleMask: styleMask,
                        backing: .buffered, defer: true)
 
         // The window should be a bit blurred.
-        self.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        self.appearance = NSAppearance(named: .vibrantLight)
 
         self.titlebarAppearsTransparent  = true
         self.contentView                 = self.effectView

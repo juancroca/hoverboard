@@ -117,7 +117,7 @@ internal class Recognizer {
      * This is the closure that is passed to the initializer. This function is
      * called when the recognizer has detected our signature key combo (⌘ + ⌘).
      */
-    private let closure: (Void) -> Void
+    private let closure: () -> Void
 
     /**
      * This function initializes a new recognizer that will call the given
@@ -125,7 +125,7 @@ internal class Recognizer {
      * throw an error when Hoverboard is not authorized to listen to global key
      * events.
      */
-    public init(closure: @escaping (Void) -> Void) throws {
+    public init(closure: @escaping () -> Void) throws {
         self.closure = closure
 
         try self.taps.append(EventTap(eventMask: .flagsChanged,

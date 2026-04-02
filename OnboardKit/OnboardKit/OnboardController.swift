@@ -62,9 +62,7 @@ public class OnboardController : NSViewController {
     public init(title: String, items: [OnboardItem]) {
         self.items = items
 
-        // swiftlint:disable force_unwrapping
-        super.init(nibName: nil, bundle: nil)!
-        // swiftlint:enable force_unwrapping
+        super.init(nibName: nil, bundle: nil)
 
         self.title = title
     }

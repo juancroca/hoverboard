@@ -58,7 +58,7 @@ class SessionWindow : NSWindow {
                        backing: .buffered,
                          defer: false)
 
-        self.level = Int(CGWindowLevelKey.floatingWindow.rawValue)
+        self.level = NSWindow.Level(rawValue: Int(CGWindowLevelKey.floatingWindow.rawValue))
 
         self.isOpaque             = false
         self.backgroundColor      = .clear

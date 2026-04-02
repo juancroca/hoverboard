@@ -26,7 +26,7 @@ import Foundation
  * This protocol should be implemented by all classes that want to receive
  * updates from the window manager. In our case, that's only the app delegate.
  */
-public protocol WindowManagerDelegate : class {
+public protocol WindowManagerDelegate: AnyObject {
     /**
      * This function is called to check if the window manager should start a new
      * session.

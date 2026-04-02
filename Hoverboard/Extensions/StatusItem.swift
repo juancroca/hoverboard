@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import ElsloooKit
+import Cocoa
 import Foundation
 
 extension AppDelegate {
@@ -100,20 +100,20 @@ extension AppDelegate {
      * This function dynamically updates the given menu item to change its state
      * (checkmark visibility) or title.
      */
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         guard let tag = MenuItemTag(rawValue: menuItem.tag) else {
             return true
         }
 
         switch tag {
         case .lightMode:
-            menuItem.state = !self.isDarkMode ? NSOnState : NSOffState
+            menuItem.state = !self.isDarkMode ? .on : .off
         case .darkMode:
-            menuItem.state =  self.isDarkMode ? NSOnState : NSOffState
+            menuItem.state =  self.isDarkMode ? .on : .off
         case .launchAtStartup:
-            menuItem.state = LoginItem.main.isEnabled ? NSOnState : NSOffState
+            menuItem.state = LoginItem.main.isEnabled ? .on : .off
         case .disableHour:
-            menuItem.state = self.disabledUntil != nil ? NSOnState : NSOffState
+            menuItem.state = self.disabledUntil != nil ? .on : .off
         case .disableCurrentApp:
             guard let application = NSRunningApplication.foreground,
                   let name        = application.localizedName,
@@ -130,26 +130,17 @@ extension AppDelegate {
 
             let disabled   = self.disabledApplications.contains(bundleID)
             menuItem.title = NSLocalizedString("for ", comment: "") + name
-            menuItem.state = disabled ? NSOnState : NSOffState
+            menuItem.state = disabled ? .on : .off
         }
 
         return true
     }
 
     /**
-     * This function shows my own about window. If you decide to fork this
-     * project, make sure to replace my about window with your own or the
-     * default about panel by Apple. My about window is not open source and may
-     * not be incorporated into other apps.
+     * Shows the system About panel (version, copyright from Info.plist).
      */
-    func showAboutPanel() {
-        // We need to keep a reference to the window controller for as long as
-        // the window is shown. Otherwise, it'll immediately close because its
-        // retain count drops to zero.
-        self.aboutWindowController = AboutWindowController()
-        self.aboutWindowController?.window?.delegate = self
-        self.aboutWindowController?.showWindow(nil)
-
+    @objc func showAboutPanel() {
+        NSApp.orderFrontStandardAboutPanel(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 
@@ -157,7 +148,7 @@ extension AppDelegate {
      * This function is called by the light mode menu item to switch to light
      * mode.
      */
-    func enableLightMode() {
+    @objc func enableLightMode() {
         self.isDarkMode = false
     }
 
@@ -165,7 +156,7 @@ extension AppDelegate {
      * This function is called by the dark mode menu item to switch to dark
      * mode.
      */
-    func enableDarkMode() {
+    @objc func enableDarkMode() {
         self.isDarkMode = true
     }
 
@@ -173,7 +164,7 @@ extension AppDelegate {
      * This function toggles between the launch at startup user preference and
      * updates the LoginItem accordingly.
      */
-    func toggleLaunchAtStartup() {
+    @objc func toggleLaunchAtStartup() {
         self.shouldLaunchAtStartup = !self.shouldLaunchAtStartup
     }
 
@@ -181,7 +172,7 @@ extension AppDelegate {
      * This function is called by its corresponding menu item to disable
      * Hoverboard.
      */
-    func disableHour() {
+    @objc func disableHour() {
         if self.disabledUntil == nil {
             self.disabledUntil = Date().addingTimeInterval(3600)
         } else {
@@ -193,7 +184,7 @@ extension AppDelegate {
      * This function is called by its corresponding menu item to disable
      * Hoverboard for the application currently in foreground.
      */
-    func disableCurrentApp() {
+    @objc func disableCurrentApp() {
         guard let application = NSRunningApplication.foreground,
               let identifier  = application.bundleIdentifier else {
             return
@@ -279,7 +270,7 @@ extension AppDelegate {
      * only once.
      */
     func setupStatusMenu() {
-        self.statusItem.length = NSSquareStatusItemLength
+        self.statusItem.length = NSStatusItem.squareLength
 
         // The menu will look like this:
         //
@@ -372,7 +363,7 @@ extension AppDelegate {
      *
      * TODO: this function still needs to be implemented.
      */
-    func openDocumentation() {
+    @objc func openDocumentation() {
 
     }
 }

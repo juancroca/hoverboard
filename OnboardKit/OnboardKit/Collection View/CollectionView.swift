@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import AppKit
 import Foundation
 
 /**
@@ -114,8 +115,9 @@ internal class CollectionView : NSView {
                                     -> CollectionViewCell {
         // First, we look if a cell with the given identifier *and* indexPath
         // already exists and is visible.
+        let id = NSUserInterfaceItemIdentifier(identifier)
         for cell in self.cells {
-            if cell.identifier == identifier && cell.indexPath == indexPath {
+            if cell.identifier == id && cell.indexPath == indexPath {
                 return cell
             }
         }
@@ -128,7 +130,7 @@ internal class CollectionView : NSView {
         }
 
         let cell        = `class`.init()
-        cell.identifier = identifier
+        cell.identifier = id
         cell.indexPath  = indexPath
         self.cells.append(cell)
 

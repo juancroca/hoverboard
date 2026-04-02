@@ -30,9 +30,7 @@ public class OnboardFinishController: NSViewController {
      * This function initializes the finish controller with the given title.
      */
     public init(title: String) {
-        // swiftlint:disable force_unwrapping
-        super.init(nibName: nil, bundle: nil)!
-        // swiftlint:enable force_unwrapping
+        super.init(nibName: nil, bundle: nil)
 
         self.title = title
     }
@@ -105,7 +103,7 @@ public class OnboardFinishController: NSViewController {
      * window and saves the fact that onboarding has completed in persistant
      * storage.
      */
-    public var closeBlock: ((Void) -> Void)?
+    public var closeBlock: (() -> Void)?
 
     /**
      * We override this function to add our subviews to the view controller

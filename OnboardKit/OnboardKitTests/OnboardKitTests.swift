@@ -27,7 +27,7 @@ final class TitleFormatterTests: XCTestCase {
 
     func testAttributedStringReplacesPlaceholderWithColoredName() {
         let template = "X $(CFBundleName) Y"
-        let attr: NSAttributedString? = TitleFormatter.format(string: template)
+        let attr: NSAttributedString? = TitleFormatter.attributedFormat(string: template)
         XCTAssertNotNil(attr)
         let plain = attr?.string ?? ""
         let bundleName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""

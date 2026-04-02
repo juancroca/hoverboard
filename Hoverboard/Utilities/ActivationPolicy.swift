@@ -9,7 +9,7 @@
 import AppKit
 import Foundation
 
-class ActivationPolicy {
+class DockActivationPolicy {
     private var timer: Timer?
 
     /**
@@ -20,10 +20,10 @@ class ActivationPolicy {
         let center = NotificationCenter.default
 
         center.addObserver(self, selector: #selector(updateActivationPolicy),
-                           name: .NSWindowDidBecomeKey, object: nil)
+                           name: NSWindow.didBecomeKeyNotification, object: nil)
 
         center.addObserver(self, selector: #selector(updateActivationPolicy),
-                           name: .NSWindowWillClose, object: nil)
+                           name: NSWindow.willCloseNotification, object: nil)
     }
 
     /**
@@ -33,8 +33,8 @@ class ActivationPolicy {
     deinit {
         let center = NotificationCenter.default
 
-        center.removeObserver(self, name: .NSWindowDidBecomeKey, object: nil)
-        center.removeObserver(self, name: .NSWindowWillClose, object: nil)
+        center.removeObserver(self, name: NSWindow.didBecomeKeyNotification, object: nil)
+        center.removeObserver(self, name: NSWindow.willCloseNotification, object: nil)
     }
 
     /**
@@ -43,16 +43,19 @@ class ActivationPolicy {
      */
     @objc func updateActivationPolicy(notification: Notification) {
         // Filter status bar windows from the list of all windows.
+        let statusBarLevel = NSWindow.Level(
+            rawValue: Int(CGWindowLevelForKey(.statusWindow))
+        )
         var windows = NSApp.windows.filter({ (window) -> Bool in
             return !(window is SessionWindow) &&
-                window.level != Int(CGWindowLevelForKey(.statusWindow))
+                window.level != statusBarLevel
         })
 
         // If the event is NSWindowWillClose, we have to remove that window from
         // the list.
         let window = notification.object as? NSWindow
 
-        if notification.name == .NSWindowWillClose {
+        if notification.name == NSWindow.willCloseNotification {
             windows = windows.filter { $0 !== window }
         }
 
@@ -60,17 +63,17 @@ class ActivationPolicy {
         if windows.count > 0 {
             self.timer?.invalidate()
 
-            if NSApp.activationPolicy() == .regular {
+            if NSApplication.shared.activationPolicy() == NSApplication.ActivationPolicy.regular {
                 return
             }
 
             NSApp.setActivationPolicy(.regular)
 
             // We focus the loginwindow process.
-            let app = NSWorkspace.shared().runningApplications[0]
+            let app = NSWorkspace.shared.runningApplications[0]
             app.activate(options: .activateIgnoringOtherApps)
 
-            let current = NSRunningApplication.current()
+            let current = NSRunningApplication.current
             current.activate(options: .activateIgnoringOtherApps)
         } else {
             self.resetTimer()

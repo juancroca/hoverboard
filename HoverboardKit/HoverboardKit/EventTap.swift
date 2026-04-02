@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import AppKit
 import Foundation
 
 /**
@@ -32,7 +33,7 @@ internal class EventTap {
     /**
      * This contains the events that this tap needs to listen for.
      */
-    public let eventMask: NSEventMask
+    public let eventMask: NSEvent.EventTypeMask
 
     /**
      * This is a reference to the event tap itself.
@@ -75,7 +76,7 @@ internal class EventTap {
      * set to false. Events retrieved from the underlying CGEventTap are
      * forwarded to the given closure.
      */
-    public init(eventMask: NSEventMask, listenOnly: Bool,
+    public init(eventMask: NSEvent.EventTypeMask, listenOnly: Bool,
                 closure: @escaping (NSEvent) -> NSEvent?) throws {
         self.eventMask    = eventMask
         self.isListenOnly = listenOnly

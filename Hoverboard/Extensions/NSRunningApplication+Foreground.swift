@@ -34,7 +34,7 @@ extension NSRunningApplication {
      * to the application currently in foreground.
      */
     static var foreground: NSRunningApplication? {
-        let applications = NSWorkspace.shared().runningApplications
+        let applications = NSWorkspace.shared.runningApplications
         return applications.first(where: { $0.isActive })
     }
 }

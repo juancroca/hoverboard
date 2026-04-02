@@ -27,7 +27,7 @@ import Foundation
  * get updates about a specific session. Specifically, the `SessionWindow`
  * conforms to this protocol.
  */
-public protocol SessionDelegate : class {
+public protocol SessionDelegate: AnyObject {
     /**
      * This function is called when the user presses arrow keys to move a
      * window.

@@ -21,8 +21,10 @@
  */
 
 import Cocoa
-import ElsloooKit
+#if HOCKEY_DISABLED
+#else
 import HockeySDK
+#endif
 import HoverboardKit
 import OnboardKit
 import Sparkle
@@ -31,7 +33,7 @@ import Sparkle
 class AppDelegate: NSObject, NSApplicationDelegate {
     // The status item is the center of control for our user. It is always shown
     // as long as the app is running.
-    let statusItem = NSStatusBar.system().statusItem(withLength: 0)
+    let statusItem = NSStatusBar.system.statusItem(withLength: 0)
     let statusMenu = NSMenu()
 
     // This is the window manager, basically the highest level of abstraction in
@@ -68,13 +70,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // command-keys shortly and twice in a row.
     var sessionWindowController: SessionWindowController?
 
-    // This one is imported from ElsloooKit. Replace it with something of your
-    // own or Apple's built-in about window if you decide to fork this project.
-    var aboutWindowController: AboutWindowController?
-
     // This instance makes sure that the Dock icon appears only when there are
     // windows.
-    let activationPolicy = ActivationPolicy()
+    let dockActivationPolicy = DockActivationPolicy()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // We listen to the privacy database to receive a callback when our
@@ -87,17 +85,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // add a new LoginItem if necessary.
         LoginItem.all.filter({ (item) in
             item.url.absoluteString.contains("Hoverboard")
+                || item.url.absoluteString.contains("Hoverboard")
         }).forEach { (item) in
             item.isEnabled = false
         }
 
-        // We use HockeyApp to collect crash reports and **anonymous**
-        // statistics (such as the total number of users and total number of
-        // sessions). None of that information should be individually
-        // identifiable.
+        // Hockey touches the keychain. Default: HOCKEY_DISABLED is set in the
+        // target’s Active Compilation Conditions so Debug/Release run without
+        // Hockey. Remove HOCKEY_DISABLED there to opt in to crash reporting.
+        #if HOCKEY_DISABLED
+        #else
         let identifier = "833320ca1c24464aa92b85ff477a8986"
         BITHockeyManager.shared().configure(withIdentifier: identifier)
         BITHockeyManager.shared().start()
+        #endif
 
         // Each of these is provided in an extension to remove the clutter from
         // this file.
@@ -170,16 +171,6 @@ extension AppDelegate : WindowManagerDelegate {
             self.shortcutViews.forEach { (view) in
                 view.process(key: nil)
             }
-        }
-    }
-}
-
-extension AppDelegate : NSWindowDelegate {
-    func windowWillClose(_ notification: Notification) {
-        let window = notification.object as? NSWindow
-
-        if window === self.aboutWindowController?.window {
-            self.aboutWindowController = nil
         }
     }
 }

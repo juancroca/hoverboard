@@ -1,5 +1,5 @@
 /*
- * Mirrors the layout math in `Window+Grid.swift` (visible-frame Y tweak, cell
+ * Mirrors the layout math in `Window+Grid.swift` (visible frame as-is, cell
  * rect, centered origin for non-resizable windows). If you change that setter,
  * update this file so tests continue to describe current behaviour.
  */
@@ -10,11 +10,9 @@ import AppKit
 
 private enum WindowGridLayoutMirror {
 
-    static func workingVisibleFrame(visibleFrame: NSRect,
-                                    screenFrameHeight: CGFloat) -> NSRect {
-        var frame = visibleFrame
-        frame.origin.y = screenFrameHeight - visibleFrame.maxY
-        return frame
+    /// Matches `Window+Grid`: uses `NSScreen.visibleFrame` with no Y rewrite.
+    static func workingVisibleFrame(visibleFrame: NSRect) -> NSRect {
+        return visibleFrame
     }
 
     static func cellBounds(for grid: Grid, visibleFrame: NSRect) -> NSRect {
@@ -41,19 +39,10 @@ private enum WindowGridLayoutMirror {
 
 final class WindowGridLayoutTests: XCTestCase {
 
-    func testWorkingVisibleFrameYAdjustmentMatchesWindowGrid() {
+    func testWorkingVisibleFrameIsUnmodified() {
         let visible = NSRect(x: 100, y: 200, width: 800, height: 600)
-        let screenHeight: CGFloat = 900
-        let adjusted = WindowGridLayoutMirror.workingVisibleFrame(
-            visibleFrame: visible,
-            screenFrameHeight: screenHeight
-        )
-        var expected = visible
-        expected.origin.y = screenHeight - visible.maxY
-        XCTAssertEqual(adjusted.origin.x, expected.origin.x)
-        XCTAssertEqual(adjusted.origin.y, expected.origin.y)
-        XCTAssertEqual(adjusted.size.width, visible.size.width)
-        XCTAssertEqual(adjusted.size.height, visible.size.height)
+        let adjusted = WindowGridLayoutMirror.workingVisibleFrame(visibleFrame: visible)
+        XCTAssertEqual(adjusted, visible)
     }
 
     func testCellBoundsFullGridOneByOne() {

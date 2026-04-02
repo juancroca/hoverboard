@@ -76,7 +76,7 @@ class GridView : NSView {
                                               yRadius: radius - 4)
                             }
 
-                            path.windingRule = .evenOddWindingRule
+                            path.windingRule = .evenOdd
                             path.fill()
                         } else if x >= x1 && x < x2 && y >= y1 && y < y2 {
 
@@ -101,7 +101,7 @@ class GridView : NSView {
                                           xRadius: radius - 4,
                                           yRadius: radius - 4)
 
-                            path.windingRule = .evenOddWindingRule
+                            path.windingRule = .evenOdd
                             path.fill()
                         }
                     }

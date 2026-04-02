@@ -26,7 +26,7 @@ import Foundation
  * This protocol must be implemented by classes that want to retrieve updates
  * from a authorization manager.
  */
-public protocol AuthorizationManagerDelegate : class {
+public protocol AuthorizationManagerDelegate: AnyObject {
     /**
      * This function is called when the authorization manager has determined
      * that authorization is granted to Hoverboard for managing windows of other

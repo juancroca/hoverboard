@@ -21,6 +21,7 @@
  */
 
 import Foundation
+import QuartzCore
 
 /**
  * This extension contains a custom timing function that is similar to the

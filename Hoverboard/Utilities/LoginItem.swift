@@ -155,23 +155,21 @@ public class LoginItem {
             }
 
             if newValue {
-                // I am not sure why this is an optional. My guess would be it
-                // may not be available on all systems and is NULL or nil on
-                // earlier systems.
-                guard let order = kLSSharedFileListItemBeforeFirst else {
-                    return
-                }
+                let order = kLSSharedFileListItemBeforeFirst.takeUnretainedValue()
 
                 LSSharedFileListInsertItemURL(items.takeUnretainedValue(),
-                                              order.takeUnretainedValue(), nil,
+                                              order, nil,
                                               nil, self.url as CFURL, nil, nil)
 
                 if let item = LoginItem.all.first(where: { $0.url == url }) {
                     self.reference = item.reference
                 }
             } else {
-                LSSharedFileListItemRemove(items.takeUnretainedValue(),
-                                           self.reference)
+                guard let reference = self.reference else {
+                    return
+                }
+
+                LSSharedFileListItemRemove(items.takeUnretainedValue(), reference)
 
                 self.reference = nil
             }

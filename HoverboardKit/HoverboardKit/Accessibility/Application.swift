@@ -45,7 +45,7 @@ internal class Application : Element {
      * This property returns the currently active application (if any).
      */
     internal static var active: Application? {
-        let applications = NSWorkspace.shared().runningApplications
+        let applications = NSWorkspace.shared.runningApplications
 
         // Retrieve the first running application that is active.
         guard let active = applications.first(where: { $0.isActive }) else {

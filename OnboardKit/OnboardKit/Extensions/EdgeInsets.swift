@@ -20,13 +20,13 @@
  * SOFTWARE.
  */
 
-import Foundation
+import AppKit
 
 /**
  * This extension provides two computed properties that return the total
  * horizontal and vertical inset.
  */
-extension EdgeInsets {
+extension NSEdgeInsets {
     /**
      * This property computes the sum of the horizontal insets.
      */

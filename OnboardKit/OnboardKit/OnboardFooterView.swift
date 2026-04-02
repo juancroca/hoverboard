@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import AppKit
 import Foundation
 
 public class OnboardFooterView : NSView {
@@ -36,7 +37,7 @@ public class OnboardFooterView : NSView {
     /**
      * This is the closure that gets called when the user presses the link.
      */
-    public var action: ((Void) -> Void)?
+    public var action: (() -> Void)?
 
     /**
      * This is the label that shows the regular text.
@@ -67,7 +68,7 @@ public class OnboardFooterView : NSView {
      * This function initializes a footer view with the given regular text, link
      * text and action that gets called when the user presses that link.
      */
-    public init(text: String, link: String, action: @escaping (Void) -> Void) {
+    public init(text: String, link: String, action: @escaping () -> Void) {
         super.init(frame: .zero)
 
         self.text   = text
@@ -79,18 +80,18 @@ public class OnboardFooterView : NSView {
 
         self.label.frame.origin.x = 94
 
-        let underlineStyle  = NSUnderlineStyle.styleSingle.rawValue
+        let underlineStyle = NSUnderlineStyle.single.rawValue
         let attributedTitle = NSAttributedString(string: link, attributes: [
-            NSForegroundColorAttributeName: NSColor.link,
-            NSFontAttributeName:            NSFont.systemFont(ofSize: 14),
-            NSUnderlineStyleAttributeName:  underlineStyle
+            .foregroundColor: NSColor.link,
+            .font: NSFont.systemFont(ofSize: 14),
+            .underlineStyle: underlineStyle
         ])
         self.button.attributedTitle = attributedTitle
         self.button.sizeToFit()
         self.button.frame.origin.x = self.label.frame.maxX + 2
         self.button.target         = self
         self.button.action         = #selector(buttonPressed)
-        self.button.cursor         = .pointingHand()
+        self.button.cursor         = NSCursor.pointingHand
 
         self.addSubview(self.label)
         self.addSubview(self.button)
@@ -114,7 +115,7 @@ public class OnboardFooterView : NSView {
      * This function gets called by the NSButton and propagates that event to
      * the action closure.
      */
-    func buttonPressed(_ sender: NSButton) {
+    @objc func buttonPressed(_ sender: NSButton) {
         self.action?()
     }
 

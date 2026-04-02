@@ -41,7 +41,7 @@ class SessionWindowController : NSWindowController {
     init(session: Session, dark: Bool) {
         self.session = session
 
-        let screen = session.screen ?? NSScreen.main()
+        let screen = session.screen ?? NSScreen.main
 
         // Attempt to retrieve the screen width.
         let width = screen?.visibleFrame.size.width ?? 0
@@ -64,7 +64,7 @@ class SessionWindowController : NSWindowController {
             // contrast between our symbol and grid and the blurred background.
             // In my opinion, that makes it look a bit nicer. Also, it seems to
             // be what Xcode and the built-in volume hud do as well.
-            let appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+            let appearance = NSAppearance(named: .vibrantDark)
 
             window.appearance          = appearance
             window.effectView.material = .dark

@@ -373,13 +373,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hoverboard/Pods-Hoverboard-frameworks.sh",
+				"${PODS_ROOT}/HockeySDK-Mac/HockeySDK-Mac/HockeySDK.framework",
+				"${BUILT_PRODUCTS_DIR}/LetsMove/LetsMove.framework",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HockeySDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LetsMove.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hoverboard/Pods-Hoverboard-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hoverboard/Pods-Hoverboard-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5151E1DF0C0CC0BBA7C98887 /* [CP] Check Pods Manifest.lock */ = {
@@ -388,13 +395,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hoverboard-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D77CA777284F4EB07EEA9A10 /* [CP] Copy Pods Resources */ = {
@@ -403,13 +413,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hoverboard/Pods-Hoverboard-resources.sh",
+				"${PODS_ROOT}/HockeySDK-Mac/HockeySDK-Mac/HockeySDK.framework",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hoverboard/Pods-Hoverboard-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hoverboard/Pods-Hoverboard-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -550,17 +563,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = CP455FQ855;
+				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_ARCHS[sdk=macosx*]" = arm64;
 				INFOPLIST_FILE = Hoverboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elslooo.Hoverboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27bc5e86-eec0-4aed-a4ed-2e262f6b5b9f";
-				PROVISIONING_PROFILE_SPECIFIER = "Hoverboard Development";
-				SWIFT_VERSION = 3.0;
+				PRODUCT_MODULE_NAME = Hoverboard;
+				PRODUCT_NAME = Hoverboard;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) HOCKEY_DISABLED";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -570,16 +584,18 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Tim van Elsloo (CP455FQ855)";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = CP455FQ855;
+				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_ARCHS[sdk=macosx*]" = arm64;
 				INFOPLIST_FILE = Hoverboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.elslooo.Hoverboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Hoverboard Distribution";
-				SWIFT_VERSION = 3.0;
+				PRODUCT_MODULE_NAME = Hoverboard;
+				PRODUCT_NAME = Hoverboard;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) HOCKEY_DISABLED";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

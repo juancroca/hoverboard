@@ -69,7 +69,7 @@ public class OnboardWindowController : NSWindowController {
 
         // Update the title of the navigation bar.
         var title: NSAttributedString?
-        title = TitleFormatter.format(string: self.viewController?.title)
+        title = TitleFormatter.attributedFormat(string: self.viewController?.title)
 
         window.navigationBar.attributedTitle = title
 

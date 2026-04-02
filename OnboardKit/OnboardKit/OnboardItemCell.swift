@@ -136,7 +136,7 @@ class OnboardItemCell : CollectionViewCell {
                      width: 100,
                     height: 32
                 ))
-                control.autoresizingMask = .viewMinXMargin
+                control.autoresizingMask = .minXMargin
                 control.bezelStyle       = .rounded
                 control.title            = button.title
 
@@ -305,7 +305,7 @@ class OnboardItemCell : CollectionViewCell {
      * This function is called by a NSButton and propagates that event to the
      * action closure that correspond to that button.
      */
-    func buttonPressed(_ sender: NSButton) {
+    @objc func buttonPressed(_ sender: NSButton) {
         guard let item       = self.item, self.expanded else { return }
         guard let controller = item.controller else { return }
 

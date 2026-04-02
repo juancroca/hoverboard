@@ -27,9 +27,7 @@ internal extension Window {
      * This property returns the NSScreen that this window is shown on.
      */
     var screen: NSScreen? {
-        guard let screens = NSScreen.screens() else {
-            return nil
-        }
+        let screens = NSScreen.screens
 
         let frame  = self.frame
         let origin = NSPoint(x: frame.midX, y: frame.midY)
@@ -48,6 +46,6 @@ internal extension Window {
             }
         }
 
-        return NSScreen.main()
+        return NSScreen.main
     }
 }

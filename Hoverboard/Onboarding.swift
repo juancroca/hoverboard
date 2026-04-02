@@ -49,7 +49,7 @@ extension AppDelegate {
     }
 
     func setupSetupController() {
-        let title = "Getting Started with $(CFBundleName)"
+        let title = "Getting Started with Hoverboard"
 
         // swiftlint:disable line_length
         let controller = OnboardController(title: title, items: [
@@ -89,7 +89,7 @@ extension AppDelegate {
                 return
             }
 
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
         })
 
         self.setupController = controller

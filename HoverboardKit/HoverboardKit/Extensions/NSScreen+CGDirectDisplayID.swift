@@ -20,6 +20,8 @@
  * SOFTWARE.
  */
 
+import AppKit
+import CoreGraphics
 import Foundation
 
 internal extension NSScreen {
@@ -27,6 +29,9 @@ internal extension NSScreen {
      * This property returns the display id of the given screen.
      */
     var directDisplayID: CGDirectDisplayID? {
-        return self.deviceDescription["NSScreenNumber"] as? UInt32
+        let key = NSDeviceDescriptionKey("NSScreenNumber")
+        guard let value = deviceDescription[key],
+              let number = value as? NSNumber else { return nil }
+        return CGDirectDisplayID(number.uint32Value)
     }
 }

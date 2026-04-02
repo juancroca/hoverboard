@@ -32,9 +32,7 @@ public class OnboardSignupController: NSViewController {
      * This function initializes a signup controller with the given title.
      */
     public init(title: String) {
-        // swiftlint:disable force_unwrapping
-        super.init(nibName: nil, bundle: nil)!
-        // swiftlint:enable force_unwrapping
+        super.init(nibName: nil, bundle: nil)
 
         self.title = title
     }
@@ -181,7 +179,7 @@ public class OnboardSignupController: NSViewController {
     /**
      * This closure gets called when the user presses the skip button.
      */
-    public var skipBlock:   ((Void)   -> Void)?
+    public var skipBlock:   (() -> Void)?
 
     /**
      * We override this function to add our subviews to the view controller

@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import AppKit
 import Foundation
 
 /**
@@ -39,11 +40,10 @@ internal class TitleFormatter {
     }
 
     /**
-     * This function formats the given string by substituting a placeholder with
-     * the name of the main bundle. In addition, the app name is also
-     * highlighted in black.
+     * Like `format(string:)`, but returns an attributed string with the app name
+     * in black where the placeholder was.
      */
-    internal class func format(string: String?) -> NSAttributedString? {
+    internal class func attributedFormat(string: String?) -> NSAttributedString? {
         guard let string = string else { return nil }
 
         let result = NSMutableAttributedString(string: string)
@@ -56,7 +56,7 @@ internal class TitleFormatter {
             }
 
             let part = NSAttributedString(string: name, attributes: [
-                NSForegroundColorAttributeName: NSColor.black
+                .foregroundColor: NSColor.black
             ])
 
             result.replaceCharacters(in: range, with: part)

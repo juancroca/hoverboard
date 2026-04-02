@@ -38,8 +38,11 @@ internal extension Window {
                 return
             }
 
-            var visibleFrame = screen.visibleFrame
-            visibleFrame.origin.y = screen.frame.height - visibleFrame.maxY
+            // Use visibleFrame as returned by AppKit: it is already in global
+            // screen coordinates (same space as `screen.frame`). Do not rewrite
+            // origin.y using only `screen.frame.height` — that was wrong for any
+            // display whose `frame.origin` is not (0,0), e.g. external monitors.
+            let visibleFrame = screen.visibleFrame
 
             let width           = visibleFrame.width
             let height          = visibleFrame.height

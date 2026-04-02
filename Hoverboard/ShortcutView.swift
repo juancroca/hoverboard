@@ -50,7 +50,7 @@ class ShortcutView : NSView {
      * This is the callback that gets called when all keys have been pressed in
      * order in the same session.
      */
-    private let closure: (Void) -> Void
+    private let closure: () -> Void
 
     /**
      * Initialize a new shortcut view that is left-aligned (default).
@@ -59,7 +59,7 @@ class ShortcutView : NSView {
      *       Swift compiler. I expect this function to be no longer needed in
      *       the future.
      */
-    convenience init(keys: [Key], closure: @escaping (Void) -> Void) {
+    convenience init(keys: [Key], closure: @escaping () -> Void) {
         self.init(keys: keys, closure: closure, alignment: .left)
     }
 
@@ -68,7 +68,7 @@ class ShortcutView : NSView {
      *
      * TODO: right alignment is currently unsupported.
      */
-    public init(keys: [Key], closure: @escaping (Void) -> Void,
+    public init(keys: [Key], closure: @escaping () -> Void,
                 alignment: NSTextAlignment) {
         self.alignment = alignment
         self.closure   = closure

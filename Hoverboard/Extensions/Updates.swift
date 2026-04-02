@@ -23,7 +23,7 @@
 import Foundation
 
 extension AppDelegate {
-    func checkForUpdatesInBackground() {
+    @objc func checkForUpdatesInBackground() {
         self.updater.checkForUpdatesInBackground()
     }
 
@@ -31,7 +31,7 @@ extension AppDelegate {
      * This function is called by the update menu item and forwards the call to
      * the Sparkle updater.
      */
-    func checkForUpdates(_ sender: AnyObject) {
+    @objc func checkForUpdates(_ sender: AnyObject) {
         self.updater.checkForUpdates(nil)
     }
 }
